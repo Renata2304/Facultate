@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1637533466 source:e:\facultate\c\tema 1\tsk3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
