@@ -1,4 +1,8 @@
-Vaideanu Renata - Georgia 322 CD
+# so_scheduler (Planificator de threaduri)
+
+Link: https://ocw.cs.pub.ro/courses/so/teme/tema-4
+
+
 (I wrote many more comments throughout the code)
 
 - typedef struct Thread -> is used for implementing the threads of the scheduler.
