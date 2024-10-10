@@ -1,0 +1,7 @@
+Starting audit...
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect\Proiect\.\src\checker\CheckStyleConstants.java:3:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect\Proiect\.\src\pages\Register.java:43:49: Parameter crtUser should be final. [FinalParameters]
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect\Proiect\.\src\pages\SeeDetails.java:5:8: Unused import - com.fasterxml.jackson.databind.node.ObjectNode. [UnusedImports]
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect\Proiect\.\src\pages\SeeDetails.java:55:64: ',' is not followed by whitespace. [WhitespaceAfter]
+Audit done.
+Checkstyle ends with 4 errors.

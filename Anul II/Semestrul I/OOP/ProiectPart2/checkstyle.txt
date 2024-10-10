@@ -1,0 +1,6 @@
+Starting audit...
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect2\.\src\pages\Register.java:43:49: Parameter crtUser should be final. [FinalParameters]
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect2\.\src\workflow\Actions.java:22:5: Missing a Javadoc comment. [MissingJavadocMethod]
+[ERROR] E:\Facultate\Anul 2\Semestrul 1\POO\Proiect2\.\src\workflow\Actions.java:22:64: Parameter inputData should be final. [FinalParameters]
+Audit done.
+Checkstyle ends with 3 errors.
