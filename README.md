@@ -8,3 +8,13 @@ Anul I
      - MN  
      - PCLP 2 / IOCLA  
      - ELTH
+
+Anul II
+  - Semestrul 1
+     - AA
+     - Fizica
+     - POO
+     - SO
+   - Semestrul 2
+      - PP
+      - PCOM
