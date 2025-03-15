@@ -1,0 +1,41 @@
+Vaideanu Renata Georgia - 332 CD
+
+Tema 2 APD
+
+In cadul temei a trebuit sa implementez un sistem de planificare a task-urilor intr-un dispatcher,
+folosind JavaThreads. Mai exact, a trebuit sa implementez cele doua clase: MyDispatcher si MyHost, 
+care la randul lor extind clasele abstracte Dispatcher si Host.
+
+Clasa MyDispatcher:
+
+In cadrul acestei clase se implementeaza addTask(Task task) care va face legatura dintre host si 
+dispatcher si va adauga cate un task in lista de taskuri care va fi pe urma implementata in MyHost.
+In functie de algoritmul care trebuie sa fie folosit in programarea task-urilor, avem 4 cazuri:
+- Round Robin -> in acest caz se foloseste formula furnizata din cerinta si se atribuie host-ului
+cu cu numarul (i + 1) % nr task-ul curent, unde i este ultimul host caruia i s-a atribuit un task
+(m-am folosit de variabila lastIndex) si nr este numarul total de hosturi (hosts.size()).
+- Shortest Queue -> in acest caz se cauta host-ul cu lista de task-uri cea mai scurta (cu ajutorul
+getQueueSize(), din MyHost). Se parcurg toate host-urile, iar celui cu lista cea mai scurta i se va
+atribui noul task.
+- Size Interval Task Assignment -> in acest caz de atribuie taskurile primile celor 3 host-uri. 
+Astfel, task-urile short sunt asignate host-ului 0, cele medium, host-ului 1, iar cele long, 
+host-ului 3. Tipul task-ului primit este preluat cu ajutorul task.getType().
+- Least Work Left -> in acest caz(similar cu shortest queue) se initializeaza valoarea host-ului
+the least work left cu host.get(0) si apoi se parcurge intraga lista de host-uri si atunci cand se
+gaseste un host cu valoarea de work left (aflata cu ajutorul functiei din MyHost, getWorkLeft()), se 
+reinstantiaza variabila finala. In final, se va atribui task-ul, host-ului cu cel mai putin work left.
+
+Clasa MyHost:
+
+In cadrul acestei clase se regasesc:
+- addTask(Task task) -> in care se vor adauga task-urile primite in lista de task-uri totale care vor 
+fi parcurse mai tarziu. De asemenea, se adauga la variabila totalTime valoarea de timp ramas a 
+task-ului care intra acum in host. 
+- getNextTask() -> cu ajutorul unei functii lambda apdateaza taskCrt, task-ul care se ruleaza momentan,
+alegandu-se din lista cu toate task-urile, cel cu cea mai mare prioritate. 
+- run() -> cat timp programul inca ruleaza (runnig, care va fi transformat in false atunci cand se 
+apeleaza shutdown()), se va intrerupe task-ul curent timp de 0.5 sec si se va scadea cate 0.5 sec din 
+taskul curent si din totalTime. Daca cuanta de timp a task-ului curent (taskCrt.getLeft()) devinde negativa,
+task-ulului i se va apela finish(), va fi scos din lista cu toate task-urile si va fi reinitializat cu null.
+In final, daca task-ul curent este null (prima oara cand se alege un task sau daca acesta este preemptat), se
+va alege un nou task din lista (getNextTask()).

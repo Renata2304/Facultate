@@ -1,0 +1,17 @@
+Văideanu Renata - Georgia - 332 CD
+
+Tema 1 - APD
+
+În cadrul temei, am schimbat codul doar în main și în rescale_image(_par).
+
+main: în cadrul functiei main se formează imaginea rescalată. Dacă dimensiunile originale 
+sunt mai mici, sau egale cu 2048 x 2048 (testele 1-5), se utilizează imaginea existentă;
+în caz contrar, se creează o nouă imagine redimensionată și se efectuează operația în paralel
+cu fire de execuție. La final, se eliberează memoria folosită de imaginea originală și se 
+actualizează variabila scaled_image cu adresa noii imagini redimensionate.
+
+rescale_image_par: Am transformat antetul funcției, aceasta devenind din ppm_image* in void*,
+pentru a putea fi apelată în cadrul pthread_create. Se obțin argumentele din structura thread 
+furnizată ca argument pentru firul de execuție. Se extrag informațiile din arg (num_threads, 
+image, scaled_image). Cu ajutorul formulei pentru start si end din laboratorul 1 se va imaparti
+bucla exterioara din interpolarea bicubica. 
