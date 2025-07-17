@@ -1,0 +1,331 @@
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  000 0   0     0       0 0 0 0  0   0  0     000 0   0
+
+-----------------------------------------------
+- FETCH:
+
+MAR <- PC
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  001 1   0     0       0 0 0 0  0   0  0     000 0   0
+
+C000
+
+IR <- MEM[MAR]
+PC <- PC + 1
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   1  000 0   1     0       0 0 0 0  0   1  0     000 0   0
+
+42040
+
+-----------------------------------------------
+- NOP:
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  000 0   0     0       0 0 0 0  0   0  0     000 1   0
+
+2
+
+-----------------------------------------------
+- LDA addr:
+
+MAR <- IR (PARAMETRUL)
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  111 1   0     0       0 0 0 0  0   0  0     000 0   0
+
+3C000
+
+A <- MEM[MAR]
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   1  000 0   0     0       1 0 0 0  0   0  0     000 0   0
+
+40800
+
+NOP
+2
+
+
+test:
+0001 1101
+1d       pus valoare la antepenultima pozitie, primul rand
+
+
+
+-----------------------------------------------
+- LDA val:
+
+A <- IR
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  111 0   0     0       1 0 0 0  0   0  0     000 0   0
+
+38800
+
+NOP
+2
+
+test:
+0010 0011
+23
+
+incarca valoarea 3 in A
+
+
+-----------------------------------------------
+- MOV B, A:
+
+B <- A
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  010 0   0     0       0 1 0 0  0   0  0     000 0   0
+
+10400
+
+NOP:
+2
+
+test:
+0011 0000
+30
+
+-----------------------------------------------
+- MOV C, A:
+
+C <- A
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  010 0   0     0       0 0 1 0  0   0  0     000 0   0
+
+10200
+
+NOP
+2
+
+test:
+0100 0000
+40
+
+-----------------------------------------------
+- MOV A, B:
+
+A <- B
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  011 0   0     0       1 0 0 0  0   0  0     000 0   0
+
+18800
+
+NOP
+2
+
+test:
+50
+
+-----------------------------------------------
+- MOV A, C:
+
+A <- C
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  100 0   0     0       1 0 0 0  0   0  0     000 0   0
+
+20800
+
+NOP
+2
+
+test:
+60
+
+-----------------------------------------------
+- MOV OUT, A:
+
+OUT <- A
+
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  010 0   0     0       0 0 0 0  1   0  0     000 0   0
+
+10080
+
+NOP:
+2
+
+test:
+70
+
+-----------------------------------------------
+- STR A:
+
+MAR <- IR
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  111 1   0     0       0 0 0 0  0   0  0     000 0   0
+
+3c000
+
+MEM[MAR] <- A
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+1   0  010 0   0     0       0 0 0 0  0   0  0     000 0   0
+
+90000
+
+NOP:
+2
+
+test:
+8f  salveaza pe ultima pozitie de pe prima linie
+
+-----------------------------------------------
+- STR val: (salvam in adresa din C)
+
+MAR <- C
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  100 1   0     0       0 0 0 0  0   0  0     000 0   0
+
+24000
+
+MEM[MAR] <- IR
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+1   0  111 0   0     0       0 0 0 0  0   0  0     000 0   0
+
+b8000
+
+NOP:
+2
+
+test:
+2f 40 95
+
+-----------------------------------------------
+- ADD:
+
+C <- ALU, OPC = 0
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  110 0   0     0       0 0 1 0  0   0  0     000 0   0
+
+30200
+
+NOP:
+2
+
+test:
+23 30 27 a0 60 70
+
+-----------------------------------------------
+- SUB:
+
+C <- ALU , OPC = 1
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  110 0   0     0       0 0 1 0  0   0  0     001 0   0
+
+30204
+
+NOP:
+2
+
+test:
+
+24 30 27 b0 60 70
+
+-----------------------------------------------
+- JMP addr:
+
+PC <- IR  // LDCOUNT
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  111 0   0     1       0 0 0 0  0   0  0     000 0   0
+
+39000
+
+NOP:
+2
+
+-----------------------------------------------
+- JC addr:
+
+Daca CARRY = 0
+
+NOP
+2
+
+Daca CARRY = 1
+
+PC <- IR
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  111 0   0     1       0 0 0 0  0   0  0     000 0   0
+
+39000
+
+NOP
+2
+
+test:
+
+0: LDA 1
+1: MOV B, A
+2: ADD   - REPEAT
+3: JC END(6)
+4: MOV A, C
+5: JMP REPEAT(2)
+6: MOV A, 1 - END
+7: MOV OUT, A
+
+
+21 30 a0 d6 60 c2 2c 70
+
+
+-----------------------------------------------
+- READ KEY (1110)
+
+IN <- KEYBOARD
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  000 0   0     0       0 0 0 1  0   0  0     000 0   0
+
+100
+
+A <- IN
+
+STR LD BUS MAR COUNT LDCOUNT A B C IN OUT IR FLAGS OPC CLC X
+0   0  101 0   0     0       1 0 0 0  0   0  0     000 0   0
+
+28800
+
+NOP
+2
+
+test:
+e0
+
+
+0: JMP 3        
+1: 05           
+2: 07           
+3: LDA 1        
+4: MOV B, A     
+5: LDA 2        
+6: ADD          
+7: MOV A, C     
+8: MOV OUT, A   
+9: NOP		
+A: JMP 9        
+
+c3 05 07 11 30 12 a0 60 70 00 c9
+
+
+
+
+
+
+
