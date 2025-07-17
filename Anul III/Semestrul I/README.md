@@ -1,3 +1,3 @@
-Materii Semestrul II:
+Materii Semestrul I:
 - APD
 - EGC
