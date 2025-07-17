@@ -18,3 +18,21 @@ Anul II
    - Semestrul 2
       - PP
       - PCOM
+
+Anul III
+  - Semestrul 1
+     - APD
+     - EGC
+   - Semestrul 2
+      - ASC
+      - PM
+
+Anul IV
+  - Semestrul 1
+     - EGC2  / PGAPI
+     - IA 2
+     - IOC
+     - SI
+   - Semestrul 2
+      - TWEB
+      - VLSI
